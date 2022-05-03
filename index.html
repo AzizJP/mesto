@@ -13,47 +13,77 @@
     </header>
     <main class="main">
       <section class="profile">
-        <div class="profile__avatar"></div>
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <h2 class="profile__info">Исследователь океана</h2>
-        <div class="profile__edit-button"></div>
-        <div class="profile__add-button"></div>
+        <div class="profile__content">
+          <div class="profile__avatar"></div>
+          <div class="profile__about">
+            <div class="profile__title">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__edit-button profile__edit-button_popup"></button>
+            </div>
+            <h2 class="profile__info">Исследователь океана</h2>
+          </div>
+        </div>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="cards">
         <div class="card">
           <img src="./images/karachay-cherkessia.jpg" alt="Сентинский храм на отроге горного хребта" class="card__image">
-          <h2 class="card__title">Карачаево-Черкесия</h2>
-          <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          <div class="card__info">
+            <h2 class="card__title">Карачаево-Черкесия</h2>
+            <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          </div>
         </div>
         <div class="card">
           <img src="./images/elbrus.jpg" alt="Гора Эльбрус вдали на горизонте" class="card__image">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          <div class="card__info">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          </div>
         </div>
         <div class="card">
           <img src="./images/dombai.jpg" alt="Вершина западной части главного хребта Большого Кавказа" class="card__image">
-          <h2 class="card__title">Домбай</h2>
-          <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          <div class="card__info">
+            <h2 class="card__title">Домбай</h2>
+            <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          </div>
         </div>
         <div class="card">
-          <img src="./images/tower-bridge.jpg" alt="Тауэрский мост над рекой Темзой" class="card__image">
-          <h2 class="card__title">Тауэрский мост</h2>
-          <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          <img src="./images/saint-isaacs-cathedral.jpg" alt="Исаакиевский собор в Санкт-Петербурге" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Санкт-Петербург</h2>
+            <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          </div>
         </div>
         <div class="card">
-          <img src="./images/musei-vaticani.jpg" alt="Статуя в музее Ватикана" class="card__image">
-          <h2 class="card__title">Музей Ватикана</h2>
-          <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          <img src="./images/sortavala.jpg" alt="Заснеженный лес в Сортавале" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Сортавала</h2>
+            <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          </div>
         </div>
         <div class="card">
-          <img src="./images/taj-mahal.jpg" alt="Мавзолей-мечеть в Агре, окруженный фонтанами" class="card__image">
-          <h2 class="card__title">Тадж-Махал</h2>
-          <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          <img src="./images/sikhote-alin.jpg" alt="Холмы вулканического поля Сихотэ-Алинь" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Сихотэ-Алинь</h2>
+            <img src="./images/like.svg" alt="Сердечко" class="card__like">
+          </div>
         </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__author">&copy; 2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <form class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <button type="button" class="popup__close"></button>
+        <input type="text" id="popup__name" name="popup__name"  class="popup__form popup__form_name" placeholder="Жак-Ив Кусто">
+        <input type="text" id="popup__info" name="popup__info" class="popup__form popup__form_info" placeholder="Исследователь океана">
+        <button type="submit" class="popup__save">
+          <p class="popup__save_text">Сохранить</p>
+        </button>
+      </form>
+    </div>
+    <script src="./scripts/popup.js"></script>
   </body>
 </html>

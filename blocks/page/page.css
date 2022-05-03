@@ -2,12 +2,6 @@
   background-color: #000000;
   font-family: 'Inter-Regular', 'Verdana', 'Tahoma', sans-serif;
   color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (min-width: 880px) {
-  .page {
-    align-items: center;
-  }
+  max-width: 880px;
+  margin: 0 auto 0;
 }

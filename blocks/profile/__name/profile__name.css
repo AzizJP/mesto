@@ -1,0 +1,13 @@
+.profile__name {
+  font-family: 'Inter-Medium';
+  font-size: 1.6875rem;
+  line-height: 2.0425rem;
+  margin: 0 10px 0 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 620px) {
+  .profile__name {
+    margin: 0 18px 0 0;
+  }
+}
