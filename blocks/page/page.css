@@ -1,7 +1,9 @@
 .page {
   background-color: #000000;
-  font-family: 'Inter-Regular', 'Verdana', 'Tahoma', sans-serif;
+  font-family: 'Inter', 'Verdana', 'Tahoma', sans-serif;
   color: #FFFFFF;
   max-width: 880px;
   margin: 0 auto 0;
+  font-style:  normal;
+  font-weight: 400;
 }

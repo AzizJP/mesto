@@ -2,7 +2,9 @@
   margin: 25px 22px 75px;
   padding: 0;
   color: black;
-  font-family: 'Inter-Black';
+  font-family: 'Inter', 'Verdana', 'Tahoma', sans-serif;
+  font-style:  normal;
+  font-weight: 900;
   font-size: 1.125rem;
   line-height: 1.36125rem;
 }

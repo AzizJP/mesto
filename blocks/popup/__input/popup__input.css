@@ -1,0 +1,14 @@
+.popup__input {
+  border: none;
+  width: 84%;
+  padding: 0 0 13px 0;
+  margin: 0 22px 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline-style: none;
+}
+
+@media screen and (min-width: 620px) {
+  .popup__input {
+    margin: 0 36px 30px;
+  }
+}
