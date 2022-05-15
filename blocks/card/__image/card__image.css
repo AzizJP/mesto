@@ -2,7 +2,16 @@
   object-fit: cover;
   object-position: center;
   width: 100%;
-  min-height: 282px;
+  height: 282px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.5s linear;
+}
+
+@media screen and (min-width: 920px) {
+  .card__image:hover {
+    opacity: 0.5;
+    transition: opacity 0.1s linear;
+  }
 }
