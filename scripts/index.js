@@ -90,50 +90,17 @@ function cardRemoveHandler (evt){
 
 //---Функция разворачивания изображения
 
-function openPopupCard (evt) {
-  const cardElement = evt.target.closest('.card');
-  const cardImg = cardElement.querySelector('.card__image');
-  const cardTitle = cardElement.querySelector('.card__title');
-  const popupImg = document.querySelector('.popup__image');
-  const popupTitle = document.querySelector('.popup__name');
-  popupTitle.textContent = cardTitle.textContent;
-  popupImg.src = cardImg.src;
-  popupImg.alt = cardTitle.textContent;
-  openPopup(popupCardImage);
-};
-
-
-
-//---Добавление карточки---
-
-//Создаем карточку
-function addCardElement () {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  const cardTitle = cardElement.querySelector('.card__title');
-  const cardImg = cardElement.querySelector('.card__image');
-  cardTitle.textContent = titleInputAddButton.value;
-  cardImg.src = linkInputAddButton.value;
-  cardImg.alt = `Фотография места - ${titleInputAddButton.value}`;
-  const cardLike = cardElement.querySelector('.card__like');
-  const cardRemove = cardElement.querySelector('.card__trash');
-  const popupImage = cardElement.querySelector('.card__image');
-  cardLike.addEventListener('click', cardLikeHandler);
-  cardRemove.addEventListener('click', cardRemoveHandler);
-  popupImage.addEventListener('click', openPopupCard);
-  return cardElement;
-}
-//Добавляем карточку в разметку
-function renderCard (card) {
-  card.prepend(addCardElement());
-}
-//Создаем слушателя
-cardElementForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  renderCard(card);
-  closePopup(cardElementAddButton);
-  cardElementForm.reset();
-});
-
+// function openPopupCard (evt) {
+//   const cardElement = evt.target.closest('.card');
+//   const cardImg = cardElement.querySelector('.card__image');
+//   const cardTitle = cardElement.querySelector('.card__title');
+//   const popupImg = document.querySelector('.popup__image');
+//   const popupTitle = document.querySelector('.popup__name');
+//   popupTitle.textContent = cardTitle.textContent;
+//   popupImg.src = cardImg.src;
+//   popupImg.alt = cardTitle.textContent;
+//   openPopup(popupCardImage);
+// };
 
 
 //---Отображение существующего массива данных---
@@ -151,7 +118,14 @@ function createCards (item) {
   const popupImage = cardElement.querySelector('.card__image');
   cardLike.addEventListener('click', cardLikeHandler);
   cardRemove.addEventListener('click', cardRemoveHandler);
-  popupImage.addEventListener('click', openPopupCard);
+  popupImage.addEventListener('click', () => {
+    const popupImg = document.querySelector('.popup__image');
+    const popupTitle = document.querySelector('.popup__name');
+    popupTitle.textContent = cardTitle.textContent;
+    popupImg.src = cardImg.src;
+    popupImg.alt = cardTitle.textContent;
+    openPopup(popupCardImage);
+    });
   return cardElement;
 }
 //Добавляем карточки в разметку
@@ -161,4 +135,37 @@ function renderCards (card, item) {
 //Перебор массива
 initialCards.forEach((item) => {
   renderCards(card, item)
+});
+
+
+//---Добавление карточки---
+
+//Создаем карточку
+// function addCardElement () {
+//   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+//   const cardTitle = cardElement.querySelector('.card__title');
+//   const cardImg = cardElement.querySelector('.card__image');
+//   cardTitle.textContent = titleInputAddButton.value;
+//   cardImg.src = linkInputAddButton.value;
+//   cardImg.alt = `Фотография места - ${titleInputAddButton.value}`;
+//   const cardLike = cardElement.querySelector('.card__like');
+//   const cardRemove = cardElement.querySelector('.card__trash');
+//   const popupImage = cardElement.querySelector('.card__image');
+//   cardLike.addEventListener('click', cardLikeHandler);
+//   cardRemove.addEventListener('click', cardRemoveHandler);
+//   popupImage.addEventListener('click', openPopupCard);
+//   return cardElement;
+// }
+
+
+//Добавляем карточку в разметку
+function renderCard (card) {
+  card.prepend(createCards({name: titleInputAddButton.value, link: linkInputAddButton.value}));
+}
+//Создаем слушателя
+cardElementForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  renderCard(card);
+  closePopup(cardElementAddButton);
+  cardElementForm.reset();
 });
