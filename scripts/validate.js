@@ -7,9 +7,6 @@ const config = {
   errorClass: 'popup__input-error_active'
 };
 
-const formElement = document.querySelector(config.formSelector);
-const inputElement = formElement.querySelector(config.inputSelector);
-
 
 //---Валидация форм---
 
@@ -89,7 +86,7 @@ const toggleButtonState = (formElement, inputList, config) => {
 
 
 // Функция, которая проверяет валидность полей при открытии попапа
-const popupOpenValidation = (popup, config) => {
+const resetValidation = (popup, config) => {
   const formElement = popup.querySelector(config.formSelector)
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   inputList.forEach((inputElement) => {
