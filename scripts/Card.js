@@ -1,44 +1,54 @@
 import {openPopup} from './index.js'
 
+const popupImg = document.querySelector('.popup__image');
+const popupTitle = document.querySelector('.popup__name');
+const popupCardImage = document.querySelector('#popup__img');
+
 export class Card {
-  #cards = '#cards';
+
   #card = '.card';
   #cardTitle = '.card__title';
   #cardImage = '.card__image';
   #cardLike = '.card__like';
   #cardTrash = '.card__trash';
   #cardLikeActive = 'card__like_active';
-  #popupCardImage = '#popup__img';
-  #popupImage = '.popup__image';
-  #popupName = '.popup__name';
 
-  constructor(itemName, itemLink) {
+  constructor(itemName, itemLink, cardTemplate) {
     this._name = itemName;
     this._link = itemLink;
+    this._cardTemplate = cardTemplate;
   }
 
-  createCards(){
-    const cardElement = document.querySelector(this.#cards).content.querySelector(this.#card).cloneNode(true);
-    const cardTitle = cardElement.querySelector(this.#cardTitle);
-    const cardImage = cardElement.querySelector(this.#cardImage);
+  _getCardTemplate(){
+    const cardElement = this._cardTemplate.content.querySelector(this.#card).cloneNode(true);
+    return cardElement;
+  }
+
+  generateCard(){
+    this.cardElement = this._getCardTemplate();
+    this._setEventListeners();
+    const cardTitle = this.cardElement.querySelector(this.#cardTitle);
+    const cardImage = this.cardElement.querySelector(this.#cardImage);
     cardTitle.textContent = this._name;
     cardImage.src = this._link;
     cardImage.alt = `Фотография места - ${this._name}`;
-    const cardLike = cardElement.querySelector(this.#cardLike);
-    const cardRemove = cardElement.querySelector(this.#cardTrash);
-    const popupImage = cardElement.querySelector(this.#cardImage);
+    return this.cardElement;
+  }
+
+  _setEventListeners(){
+    const cardLike = this.cardElement.querySelector(this.#cardLike);
+    const cardRemove = this.cardElement.querySelector(this.#cardTrash);
+    const popupImage = this.cardElement.querySelector(this.#cardImage);
     cardLike.addEventListener('click', this._handleCardLike);
     cardRemove.addEventListener('click', this._handleCardRemove);
-    popupImage.addEventListener('click', () => {
-      const popupImg = document.querySelector(this.#popupImage);
-      const popupTitle = document.querySelector(this.#popupName);
-      popupTitle.textContent = cardTitle.textContent;
-      popupImg.src = cardImage.src;
-      popupImg.alt = cardTitle.textContent;
-      const popupCardImage = document.querySelector(this.#popupCardImage);
-      openPopup(popupCardImage);
-    });
-    return cardElement;
+    popupImage.addEventListener('click', this._handleCardImage);
+  }
+
+  _handleCardImage = () => {
+    popupTitle.textContent = this._name;
+    popupImg.src = this._link;
+    popupImg.alt = `Фотография места - ${this._name}`;
+    openPopup(popupCardImage);
   }
 
   _handleCardLike = (evt) => {

@@ -17,12 +17,8 @@ const cardElementForm = document.querySelector('#add-place')
 const inputTypePlace = document.querySelector('.popup__input_type_place');
 const inputTypeLink = document.querySelector('.popup__input_type_link');
 const popups = document.querySelectorAll('.popup');
+const cardTemplate = document.querySelector('#cards');
 
-
-Array.from(document.forms).forEach((formElement) => {
-  const form = new FormValidator(config, formElement);
-  form.enableValidation();
-});
 
 // ---Закрытие попапов кликом на крестик или оверлей---
 popups.forEach((popup) => {
@@ -54,23 +50,24 @@ export function closePopup(popup) {
   document.removeEventListener('keydown', closeByEscape);
 }
 
-//---Редактор профиля---
-popupOpenEditButton.addEventListener('click', () =>{
+Array.from(document.forms).forEach((formElement) => {
+  const form = new FormValidator(config, formElement);
+  form.enableValidation();
+
+  //---Редактор профиля---
+  popupOpenEditButton.addEventListener('click', () =>{
   openPopup(popupEditButton);
   inputTypeName.value = profileName.textContent;
   inputTypeInfo.value = profileInfo.textContent;
-  // resetValidation(profileForm, config);
-  const form = new FormValidator(config, profileForm);
   form.resetValidation();
-});
+  });
 
-//---Добавление карточки---
-cardElementOpenButton.addEventListener('click', () => {
+  //---Добавление карточки---
+  cardElementOpenButton.addEventListener('click', () => {
   openPopup(cardElementAddButton);
-  // resetValidation(cardElementForm, config);
-  const form = new FormValidator(config, cardElementForm);
   form.resetValidation();
   cardElementForm.reset();
+  });
 });
 
 //---Сохранение изменений---
@@ -84,10 +81,14 @@ function handleProfileFormSubmit (evt) {
 };
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
+function createCard (name, link) {
+  const createCard = new Card(name, link, cardTemplate);
+  return createCard.generateCard();
+}
+
 //Добавляем карточки в разметку
 function renderCards (card, item) {
-  const createCard = new Card(item.name, item.link);
-  card.append(createCard.createCards());
+  card.append(createCard (item.name, item.link));
 }
 //Перебор массива
 initialCards.forEach((item) => {
@@ -96,8 +97,7 @@ initialCards.forEach((item) => {
 
 //Добавляем карточку в разметку
 function renderCard (card) {
-  const createCard = new Card(inputTypePlace.value, inputTypeLink.value);
-  card.prepend(createCard.createCards());
+  card.prepend(createCard(inputTypePlace.value, inputTypeLink.value, cardTemplate));
 }
 
 //Создаем слушателя
