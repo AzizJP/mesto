@@ -97,7 +97,7 @@ initialCards.forEach((item) => {
 
 //Добавляем карточку в разметку
 function renderCard (card) {
-  card.prepend(createCard(inputTypePlace.value, inputTypeLink.value, cardTemplate));
+  card.prepend(createCard(inputTypePlace.value, inputTypeLink.value));
 }
 
 //Создаем слушателя
