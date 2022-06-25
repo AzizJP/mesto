@@ -1,6 +1,8 @@
 import { initialCards, config } from './constants.js';
 import FormValidator from './FormValidator.js';
+import { openPopup, closePopup } from '../utils/utils.js';
 import { Card } from './Card.js';
+
 
 //---Задаем переменные---
 const popupOpenEditButton = document.querySelector('.profile__edit-button');
@@ -31,24 +33,6 @@ popups.forEach((popup) => {
       };
   });
 });
-
-// ---Функция закрытия попапа нажатием на клавишу Escape---
-export function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
-
-//---Функция переключения класса модального окна---
-export function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-}
-export function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
-}
 
 Array.from(document.forms).forEach((formElement) => {
   const form = new FormValidator(config, formElement);
