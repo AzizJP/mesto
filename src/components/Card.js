@@ -1,9 +1,3 @@
-import {openPopup} from '../utils/utils.js'
-
-const popupImg = document.querySelector('.popup__image');
-const popupTitle = document.querySelector('.popup__name');
-const popupCardImage = document.querySelector('#popup__img');
-
 export class Card {
 
   #card = '.card';
@@ -13,10 +7,11 @@ export class Card {
   #cardTrash = '.card__trash';
   #cardLikeActive = 'card__like_active';
 
-  constructor(itemName, itemLink, cardTemplate) {
-    this._name = itemName;
-    this._link = itemLink;
+  constructor({item}, cardTemplate, handleCardImage) {
+    this._name = item.name;
+    this._link = item.link;
     this._cardTemplate = cardTemplate;
+    this._handleCardImage = handleCardImage;
   }
 
   _getCardTemplate(){
@@ -41,15 +36,12 @@ export class Card {
     const popupImage = this.cardElement.querySelector(this.#cardImage);
     cardLike.addEventListener('click', this._handleCardLike);
     cardRemove.addEventListener('click', this._handleCardRemove);
-    popupImage.addEventListener('click', this._handleCardImage);
-  }
+    popupImage.addEventListener('click', this._handleCardClick);
+  };
 
-  _handleCardImage = () => {
-    popupTitle.textContent = this._name;
-    popupImg.src = this._link;
-    popupImg.alt = `Фотография места - ${this._name}`;
-    openPopup(popupCardImage);
-  }
+  _handleCardClick = () => {
+    this._handleCardImage({name: this._name, link: this._link});
+  };
 
   _handleCardLike = (evt) => {
     evt.target.classList.toggle(this.#cardLikeActive);

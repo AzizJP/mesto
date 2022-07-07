@@ -1,6 +1,4 @@
-//---Полученный массив---
-
-const initialCards = [
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -27,7 +25,7 @@ const initialCards = [
   }
 ];
 
-const config = {
+export const config = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save',
   inactiveButtonClass: 'popup__save_invalid',
@@ -35,4 +33,32 @@ const config = {
   errorClass: 'popup__input-error_active'
 };
 
-export {initialCards, config};
+export const formValidators = {};
+
+export const formConfiguration = {
+  inputSelector: 'popup__input',
+  submitButtonSelector: 'popup__save',
+  formSelector: 'popup__form',
+}
+
+export const popupConfiguration = {
+  activeModifier: 'popup_opened',
+  closeButtonSelector: 'popup__close',
+}
+
+export const profileConfiguration = {
+  titleSelector: 'profile__name',
+  jobSelector: 'profile__info',
+}
+
+export const viewPopupConfiguration = {
+  imageSelector: 'popup__image',
+  captionSelector: 'popup__name',
+}
+
+export const cardsContainerSelector = 'cards';
+export const newCardPopupSelector = 'popup-add-card';
+export const profilePopupSelector = 'popup-edit-profile';
+export const imagePopupSelector = 'popup-image';
+export const newCardFormName = 'add-place';
+export const profileFormName = 'form__profile';
