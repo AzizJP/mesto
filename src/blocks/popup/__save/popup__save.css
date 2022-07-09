@@ -1,5 +1,5 @@
 .popup__save {
-  border: none;
+  border-width: 1px;
   background-color: rgb(0, 0, 0);
   border-radius: 2px;
   padding: 14px 0 14px;

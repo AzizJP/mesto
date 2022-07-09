@@ -14,16 +14,16 @@ import {
   formValidators,
 } from '../utils/constants.js';
 import '../pages/index.css';
-import FormValidator from './FormValidator.js';
+import FormValidator from '../components/FormValidator.js';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
-import { PopupWithForm } from '../utils/PopupWithForm.js';
-import { UserInfo } from '../utils/UserInfo.js';
-import { PopupWithImage } from '../utils/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
 
 const popupOpenEditButton = document.querySelector('.profile__edit-button');
 const cardElementOpenButton = document.querySelector('.profile__add-button');
-const cardTemplate = document.querySelector('#cards');
+const templateSelector = document.querySelector('#cards');
 
 Array.from(document.forms).forEach((formElement) => {
   formValidators[formElement.name] = new FormValidator(config, formElement);
@@ -38,16 +38,15 @@ const viewPopupImage = new PopupWithImage(
 viewPopupImage.setEventListeners();
 
 function createCard (item) {
-  const createCard = new Card({item}, cardTemplate, viewPopupImage.open);
+  const createCard = new Card({item}, templateSelector, viewPopupImage.open);
   return createCard.generateCard();
 }
 
 const cardContainer = new Section ({
-  items: initialCards.reverse(),
   renderer: createCard,
 }, cardsContainerSelector);
 
-cardContainer.rendererAll();
+cardContainer.renderItems(initialCards.reverse());
 
 const handleCardSubmit = (item) => {
   cardContainer.addItem(item);
