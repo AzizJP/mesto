@@ -23,7 +23,6 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 
 const popupOpenEditButton = document.querySelector('.profile__edit-button');
 const cardElementOpenButton = document.querySelector('.profile__add-button');
-const templateSelector = document.querySelector('#cards');
 
 Array.from(document.forms).forEach((formElement) => {
   formValidators[formElement.name] = new FormValidator(config, formElement);
@@ -38,7 +37,7 @@ const viewPopupImage = new PopupWithImage(
 viewPopupImage.setEventListeners();
 
 function createCard (item) {
-  const createCard = new Card({item}, templateSelector, viewPopupImage.open);
+  const createCard = new Card({item}, '#cards', viewPopupImage.open);
   return createCard.generateCard();
 }
 

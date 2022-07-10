@@ -2,8 +2,8 @@ export class UserInfo {
   constructor(profileConfig) {
     this._titleSelector = profileConfig.titleSelector;
     this._jobSelector = profileConfig.jobSelector;
-    this._titleElement = document.querySelector(`.${this._titleSelector}`);
-    this._jobElement = document.querySelector(`.${this._jobSelector}`);
+    this._titleElement = document.querySelector(this._titleSelector);
+    this._jobElement = document.querySelector(this._jobSelector);
     this._profile = {title: '', info: ''};
   }
 

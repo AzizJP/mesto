@@ -11,8 +11,8 @@ export class PopupWithForm extends Popup{
     this._getterCallBack = getterCallBack;
     this._formSelector = formSelector;
     this._formElement = document.forms[this._formName];
-    this._inputList = Array.from(this._formElement.querySelectorAll(`.${this._inputSelector}`));
-    this._submitButton = this._formElement.querySelector(`.${this._submitButtonSelector}`);
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
     this._validationResetCallBack = validationResetCallBack;
   }
 
