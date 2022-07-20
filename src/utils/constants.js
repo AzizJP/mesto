@@ -1,30 +1,3 @@
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 export const config = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save',
@@ -49,6 +22,7 @@ export const popupConfiguration = {
 export const profileConfiguration = {
   titleSelector: '.profile__name',
   jobSelector: '.profile__info',
+  avatarSelector: '.profile__avatar',
 }
 
 export const viewPopupConfiguration = {
@@ -56,9 +30,23 @@ export const viewPopupConfiguration = {
   captionSelector: '.popup__name',
 }
 
+export const buttonCaptions = {
+  normalCaption:'Сохранить',
+  activeCaption: 'Сохранение...',
+}
+
+export const confirmDeleteButtonCaptions = {
+  normalCaption:'Да',
+  activeCaption: 'Удаляю...',
+}
+
 export const cardsContainerSelector = '.cards';
 export const newCardPopupSelector = '.popup-add-card';
 export const profilePopupSelector = '.popup-edit-profile';
+export const avatarPopupSelector = '.popup-profile-avatar';
+export const confirmationPopupSelector = '.popup-confirm';
 export const imagePopupSelector = '.popup-image';
 export const newCardFormName = 'add-place';
 export const profileFormName = 'form__profile';
+export const avatarFormName = 'profile-avatar';
+export const trashPopupFormName = 'card-trash-popup';

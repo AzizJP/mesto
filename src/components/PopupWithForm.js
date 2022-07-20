@@ -2,7 +2,7 @@ import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup{
 
-  constructor(popupSelector, formName, popupConfig, {inputSelector, submitButtonSelector, formSelector}, validationResetCallBack, submitCallBack, getterCallBack = null) {
+  constructor(popupSelector, formName, popupConfig, {inputSelector, submitButtonSelector, formSelector}, validationResetCallBack, submitCallBack, {normalCaption, activeCaption}, getterCallBack = null) {
     super (popupSelector, popupConfig);
     this._formName = formName;
     this._submitCallBack = submitCallBack;
@@ -12,8 +12,14 @@ export class PopupWithForm extends Popup{
     this._formSelector = formSelector;
     this._formElement = document.forms[this._formName];
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
     this._validationResetCallBack = validationResetCallBack;
+    this._normalCaption = normalCaption;
+    this._activeCaption = activeCaption;
+    this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
+  }
+
+  toggleButtonCaption = (isSaving) => {
+    this._submitButton.textContent = isSaving ? this._activeCaption : this._normalCaption;
   }
 
   _getInputValues = () => {
@@ -32,8 +38,7 @@ export class PopupWithForm extends Popup{
 
   _handleSubmit = (evt) => {
     evt.preventDefault();
-    this._submitCallBack(this._getInputValues());
-    this.close();
+    this._submitCallBack(this._getInputValues(), this.toggleButtonCaption, this.close);
   }
 
   setEventListeners() {
@@ -41,7 +46,7 @@ export class PopupWithForm extends Popup{
     this._formElement.addEventListener('submit', this._handleSubmit);
   }
 
-  open() {
+  open = () => {
     if (this._getterCallBack) {
       this._setInputValues(this._getterCallBack());
     } else {
@@ -51,7 +56,7 @@ export class PopupWithForm extends Popup{
     super.open();
   }
 
-  close() {
+  close = () => {
     super.close();
     this._formElement.reset();
   }

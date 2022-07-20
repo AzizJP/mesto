@@ -1,24 +1,32 @@
 export class UserInfo {
-  constructor(profileConfig) {
-    this._titleSelector = profileConfig.titleSelector;
-    this._jobSelector = profileConfig.jobSelector;
-    this._titleElement = document.querySelector(this._titleSelector);
-    this._jobElement = document.querySelector(this._jobSelector);
-    this._profile = {title: '', info: ''};
-  }
-
-  _renderProfile = () => {
-    this._titleElement.textContent = this._profile.title;
-    this._jobElement.textContent = this._profile.info;
-  }
-
-  setUserInfo = (data) => {
-    this._profile.title = data.title || '';
-    this._profile.info = data.info || '';
-    this._renderProfile();
+  constructor({ titleSelector, jobSelector, avatarSelector }) {
+    this._titleElement = document.querySelector(titleSelector);
+    this._jobElement = document.querySelector(jobSelector);
+    this._avatarElement = document.querySelector(avatarSelector);
   }
 
   getUserInfo = () => {
-    return this._profile;
+    return {
+      title: this._titleElement.textContent,
+      info: this._jobElement.textContent,
+    }
+  }
+
+  setUserInfo = ({name, about, avatar, _id}) => {
+    this._titleElement.textContent = name;
+    this._jobElement.textContent = about;
+    this._avatarElement.style.backgroundImage = `url(${avatar})`;
+    this._id = _id;
+    this._avatar = avatar;
+  }
+
+  getUserAvatar() {
+    return {
+      avatar: this._avatar,
+    }
+  }
+
+  getUserId() {
+    return this._id;
   }
 }
